@@ -10,7 +10,7 @@ server.listen(port);
 
 app.use(express.static('public'));
 
-app.get('/server', function(req, res){
+app.get('/', function(req, res){
     res.sendFile(__dirname + '/server.html')
 })
 
