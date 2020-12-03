@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>client</title>
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        let position = {};
+        
+        
+        document.addEventListener('mousemove', function(e){
+                position.x = e.clientX,
+                position.y = e.clientY,
+                    
+            socket.emit('move', position);
+        })
+        
+        document.addEventListener('click', function(e){
+            socket.emit('click', position);
+        })
+        
+        socket.on('input', function(msg){
+            let test = prompt(msg);
+            socket.emit('input', test);
+        });
+    </script>
+</body>
+</html>
